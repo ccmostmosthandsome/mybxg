@@ -5,7 +5,9 @@ requirejs.config({
         bootstrap : 'bootstrap/js/bootstrap.min',
         cookie : 'jquery-cookie/jquery.cookie',
         common : '../js/common',
-        login :  '../js/login'
+        login :  '../js/login',
+        template : 'artTemplate/template-web',
+        'teacher-list' : '../js/teacherlist'
     },
     shim : {   //兼容非标准模块
         bootstrap : {

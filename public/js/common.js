@@ -19,7 +19,7 @@ define(['jquery','cookie'], function($) {
             }
         });
     });
-    。
+ 
     //获取请求路径
     var pathname = location.pathname;
     //判断用户是否登录要通过PHPSESSID判断，不能通过cookie判断。
