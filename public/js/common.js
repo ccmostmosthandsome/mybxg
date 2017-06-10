@@ -1,5 +1,5 @@
 
-define(['jquery','cookie'], function($) {
+define(['jquery','template','nprogress','cookie'], function($,template,nprogress) {
         //控制左侧的菜单的展开和折叠
     $('.navs ul').prev('a').on('click', function () {
         $(this).next().slideToggle();
@@ -29,10 +29,24 @@ define(['jquery','cookie'], function($) {
     //获取登录用户的cookie信息
     var loginInfo = $.cookie('loginInfo') && JSON.parse($.cookie('loginInfo'));
     if (loginInfo) {
+        var html =template('profileInfoTpl',loginInfo);
+        $('#profileInfo').html(html);
         //渲染页面
-       $('.aside .profile').find('img').attr('src',loginInfo.tc_avatar);
-        //attr('attribute','value'),其中attribute为属性的名称，value为属性的值。
-        $('.aside .profile').find('h4').text(loginInfo.tc_name); 
+       // $('.aside .profile').find('img').attr('src',loginInfo.tc_avatar);
+       //  //attr('attribute','value'),其中attribute为属性的名称，value为属性的值。
+       //  $('.aside .profile').find('h4').text(loginInfo.tc_name); 
     }
+
+    //加载遮罩效果 
+    $(document).ajaxStart(function(){
+        $('.overlay').show();
+    });
+    $(document).ajaxStop(function() {
+        $('.overlay').slideUp(800);
+    })
+
+    //添加进度条处理
+    nprogress.start();
+    nprogress.done();
     
 }); 

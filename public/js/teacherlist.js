@@ -1,13 +1,16 @@
-define(['jquery','template','bootstrap'],function($,template) {
+define(['jquery','template','util','bootstrap'],function($,template,util) {
+    //设置导航菜单选中
+    util.setMenu(location.pathname);
     //实现讲师信息显示功能
     $.ajax({
         type : 'get',
         url : '/api/teacher',
         datatype: 'json',
         success : function(data) {
-            var html = template('teacherInfoTpl',{list:data.result});
-            $('#teacherInfo').html(html);
-
+            // var html = template('teacherInfoTpl',{list:data.result});
+            // $('#teacherInfo').html(html);
+            var render = template.compile('teacherInfo');
+            var html = 
             //实现导师信息查看功能
             previewTeacher();
 
